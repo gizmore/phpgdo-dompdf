@@ -2,6 +2,7 @@
 namespace GDO\DOMPDF;
 
 use GDO\Core\GDO_Module;
+use GDO\Core\GDT_Template;
 
 /**
  * DOMPDF library wrapper.
@@ -24,6 +25,17 @@ final class Module_DOMPDF extends GDO_Module
 		{
 			require_once $path;
 		}
+	}
+	
+	public function renderTemplateAsPDF(GDT_Template $template)
+	{
+		$html = $template->renderHTML();
+		return $this->renderStringAsPDF($html);
+	}
+	
+	public function renderHtmlAsPDF(string $html)
+	{
+		
 	}
 	
 }

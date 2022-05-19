@@ -12,5 +12,18 @@ use GDO\Core\GDO_Module;
  */
 final class Module_DOMPDF extends GDO_Module
 {
+	public int $priority = 40;
+	public string $license = 'LGPL';
+	
+	public function thirdPartyFolders() : array { return ['/vendor/']; }
+	
+	public function includeDOMPDF() : void
+	{
+		$path = $this->filePath('vendor/autoload.php');
+		if (is_file($path))
+		{
+			require_once $path;
+		}
+	}
 	
 }

@@ -14,7 +14,7 @@ use GDO\Core\GDT_Template;
 final class Module_DOMPDF extends GDO_Module
 {
 	public int $priority = 40;
-	public string $license = 'LGPL';
+	public string $license = 'LGPLv2.1';
 	
 	public function thirdPartyFolders() : array { return ['/vendor/']; }
 	

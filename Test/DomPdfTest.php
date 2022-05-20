@@ -7,6 +7,11 @@ use GDO\DOMPDF\Module_DOMPDF;
 use GDO\Core\GDO_Module;
 use function PHPUnit\Framework\assertStringContainsString;
 
+/**
+ * Test DOMPDF library integration.
+ * 
+ * @author gizmore
+ */
 final class DomPdfTest extends TestCase
 {
 	public function testInclude()
@@ -28,7 +33,7 @@ Hello PDF World!
 </html>
 EOT;
 		$pdf = $module->renderHtmlAsPDF($html);
-		assertStringContainsString('Hello PDF World!', $pdf, 'Test if basic html can be rendered as PDF.');
+		assertStringContainsString('startxref', $pdf, 'Test if basic html can be rendered as PDF.');
 	}
 	
 }

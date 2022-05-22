@@ -18,7 +18,7 @@ final class DomPdfTest extends TestCase
 	{
 		$module = Module_DOMPDF::instance();
 		assertTrue($module instanceof GDO_Module);
-		$module->includeDOMPDF();
+		$module->includeVendor();
 	}
 	
 	public function testHelloWorld()

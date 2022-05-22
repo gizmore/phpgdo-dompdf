@@ -13,7 +13,6 @@ Do not forget to run post install hooks.
 
 This module allows to renderHTML() or renderTemplate().
 
-    Module_DOMPDF::instance()->includeDOMPDF();
     $pdf1 = Module_DOMPDF::instance()->renderHtmlAsPDF("<body>hello world!</body>");
     $pdf2 = Module_DOMPDF::instance()->renderTemplateAsPDF($gdt_template);
     Module_DOMPDF::instance()->outputPDF($pdf2);

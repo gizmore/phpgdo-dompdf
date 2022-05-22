@@ -5,6 +5,7 @@ use GDO\Core\GDO_Module;
 use Dompdf\Dompdf;
 use GDO\Core\GDT_Checkbox;
 use Dompdf\Options;
+use GDO\Core\WithComposer;
 
 /**
  * DOMPDF library wrapper.
@@ -18,13 +19,14 @@ use Dompdf\Options;
  */
 final class Module_DOMPDF extends GDO_Module
 {
+	use WithComposer;
+	
 	public int $priority = 25;
 	public string $license = 'LGPLv2.1';
 	
 	##############
 	### Module ###
 	##############
-	public function thirdPartyFolders() : array { return ['/vendor/']; }
 	public function getDependencies() : array
 	{
 		return ['File'];
@@ -46,20 +48,11 @@ final class Module_DOMPDF extends GDO_Module
 		];
 	}
 	public function cfgAllowPHP() : bool { return $this->getConfigValue('allow_php_pdf'); }
-	public function cfgAllowRemote() : bool
-	{
-		return $this->getConfigValue('allow_remote_pdf');
-	}
+	public function cfgAllowRemote() : bool { return $this->getConfigValue('allow_remote_pdf'); }
 	
 	##############
 	### DOMPDF ###
 	##############
-	public function includeDOMPDF() : void
-	{
-		$path = $this->filePath('vendor/autoload.php');
-		require_once $path;
-	}
-	
 	/**
 	 * Main PDF rendering call.
 	 * 
@@ -70,7 +63,7 @@ final class Module_DOMPDF extends GDO_Module
 	 */
 	public function renderHtmlAsPDF(string $html, string $size=GDT_PDF::A4, string $orientation=GDT_PDF::PORTRAIT) : string
 	{
-		$this->includeDOMPDF();
+		$this->includeVendor();
 		$options = new Options();
 		$options->set('isPhpEnabled', $this->cfgAllowPHP());
 		$options->set('isRemoteEnabled', $this->cfgAllowRemote());

@@ -13,7 +13,7 @@ use GDO\Core\WithComposer;
  * Provides GDT_PDF.
  * 
  * @author gizmore
- * @version 7.0.2
+ * @version 7.0.0
  * @since 7.0.0
  * @see GDT_PDF
  */

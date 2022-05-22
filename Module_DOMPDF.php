@@ -12,7 +12,7 @@ use Dompdf\Options;
  * Provides GDT_PDF.
  * 
  * @author gizmore
- * @version 7.0.1
+ * @version 7.0.2
  * @since 7.0.0
  * @see GDT_PDF
  */
@@ -25,8 +25,15 @@ final class Module_DOMPDF extends GDO_Module
 	### Module ###
 	##############
 	public function thirdPartyFolders() : array { return ['/vendor/']; }
-	public function getDependencies() : array { return ['File']; }
-	public function getFriendencies() : array { return ['IMagick']; }
+	public function getDependencies() : array
+	{
+		return ['File'];
+	}
+	
+	public function getFriendencies() : array
+	{
+		return ['IMagick']; # @TODO create an IMagick module to speedup DOMPDF and Module_File variant recoder.
+	}
 	
 	##############
 	### Config ###
@@ -39,7 +46,10 @@ final class Module_DOMPDF extends GDO_Module
 		];
 	}
 	public function cfgAllowPHP() : bool { return $this->getConfigValue('allow_php_pdf'); }
-	public function cfgAllowRemote() : bool { return $this->getConfigValue('allow_remote_pdf'); }
+	public function cfgAllowRemote() : bool
+	{
+		return $this->getConfigValue('allow_remote_pdf');
+	}
 	
 	##############
 	### DOMPDF ###

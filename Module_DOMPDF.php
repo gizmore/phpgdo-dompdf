@@ -6,6 +6,8 @@ use Dompdf\Dompdf;
 use GDO\Core\GDT_Checkbox;
 use Dompdf\Options;
 use GDO\Core\WithComposer;
+use GDO\Core\GDT_Method;
+use GDO\UI\GDT_Page;
 
 /**
  * DOMPDF library wrapper.
@@ -53,25 +55,43 @@ final class Module_DOMPDF extends GDO_Module
 	##############
 	### DOMPDF ###
 	##############
-	/**
-	 * Main PDF rendering call.
-	 * 
-	 * @param string $html
-	 * @param string $size
-	 * @param string $orientation
-	 * @return string
-	 */
-	public function renderHtmlAsPDF(string $html, string $size=GDT_PDF::A4, string $orientation=GDT_PDF::PORTRAIT) : string
+	public function getDOMPDF()
 	{
 		$this->includeVendor();
 		$options = new Options();
 		$options->set('isPhpEnabled', $this->cfgAllowPHP());
 		$options->set('isRemoteEnabled', $this->cfgAllowRemote());
 		$dompdf = new Dompdf($options);
+		return $dompdf;
+	}
+	
+	/**
+	 * Main PDF rendering call.
+	 */
+	public function renderHtmlAsPDF(string $html, string $size=GDT_PDF::A4, string $orientation=GDT_PDF::PORTRAIT) : string
+	{
+		$dompdf = $this->getDOMPDF();
 		$dompdf->loadHtml($html);
 		$dompdf->setPaper($size, $orientation);
 		$dompdf->render();
 		return $dompdf->output();
+	}
+	
+	public function displayPdfString(string $pdf) : string
+	{
+		hdr('Content-Type: application/pdf');
+		echo $pdf;
+		die(0);
+	}
+	
+	public function renderMethodAsPDF(GDT_Method $method)
+	{
+		return $this->renderHtmlAsPDF($method->renderHTML());
+	}
+	
+	public function renderFileAsPDF(GDT_PDF $pdf)
+	{
+		
 	}
 
 }

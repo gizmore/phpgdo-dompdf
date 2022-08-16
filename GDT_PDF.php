@@ -8,6 +8,7 @@ use GDO\UI\WithImage;
 use GDO\UI\WithTitle;
 use GDO\UI\WithDescription;
 use GDO\File\GDO_File;
+use GDO\UI\GDT_HTML;
 
 /**
  * A PDF is a GDT_File with mime type and icon.
@@ -94,4 +95,20 @@ class GDT_PDF extends GDT_File
 		return GDT_Template::php('DOMPDF', 'pdf_html.php', ['field' => $this]);
 	}
 	
+	public function stream()
+	{
+		$html = $this->renderPDFHTML();
+		$size = $this->size;
+		$format = $this->orientation;
+		$pdf = Module_DOMPDF::instance()->renderHtmlAsPDF($html, $size, $format);
+		Module_DOMPDF::instance()->displayPdfString($pdf);
+	}
+	
+	###
+	
+	public static function makeWithHTML(string $html)
+	{
+		return self::makeWith(GDT_HTML::make()->var($html));
+	}
+
 }

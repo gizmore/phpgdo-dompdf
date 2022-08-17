@@ -8,6 +8,7 @@ use Dompdf\Options;
 use GDO\Core\WithComposer;
 use GDO\Core\GDT_Method;
 use GDO\UI\GDT_Page;
+use GDO\Core\Application;
 
 /**
  * DOMPDF library wrapper.
@@ -79,6 +80,10 @@ final class Module_DOMPDF extends GDO_Module
 	
 	public function displayPdfString(string $pdf) : string
 	{
+		if (Application::instance()->isUnitTests())
+		{
+			return $pdf;
+		}
 		hdr('Content-Type: application/pdf');
 		echo $pdf;
 		die(0);

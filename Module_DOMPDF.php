@@ -7,7 +7,6 @@ use GDO\Core\GDT_Checkbox;
 use Dompdf\Options;
 use GDO\Core\WithComposer;
 use GDO\Core\GDT_Method;
-use GDO\UI\GDT_Page;
 use GDO\Core\Application;
 
 /**
@@ -16,7 +15,7 @@ use GDO\Core\Application;
  * Provides GDT_PDF.
  * 
  * @author gizmore
- * @version 7.0.0
+ * @version 7.0.1
  * @since 7.0.0
  * @see GDT_PDF
  */

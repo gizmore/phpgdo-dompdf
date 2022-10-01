@@ -36,7 +36,7 @@ final class Module_DOMPDF extends GDO_Module
 	
 	public function getFriendencies() : array
 	{
-		return ['IMagick']; # @TODO create an IMagick module to speedup DOMPDF and Module_File variant recoder.
+		return ['ImageMagick'];
 	}
 	
 	##############

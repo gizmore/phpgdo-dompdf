@@ -46,7 +46,7 @@ class GDT_PDF extends GDT_File
 	### Size ###
 	############
 	public string $size = self::A4;
-	public function size(string $size) : self
+	public function size(string $size): static
 	{
 		$this->size = $size;
 		return $this;
@@ -56,16 +56,16 @@ class GDT_PDF extends GDT_File
 	### Orientation ###
 	###################
 	public string $orientation = self::PORTRAIT;
-	public function orientation(string $orientation) : self
+	public function orientation(string $orientation): static
 	{
 		$this->orientation = $orientation;
 		return $this;
 	}
-	public function portrait() : self
+	public function portrait(): static
 	{
 		return $this->orientation(self::PORTRAIT);
 	}
-	public function landscape() : self
+	public function landscape(): static
 	{
 		return $this->orientation(self::LANDSCAPE);
 	}

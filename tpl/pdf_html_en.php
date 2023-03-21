@@ -1,19 +1,21 @@
 <?php
 namespace GDO\DOMPDF\tpl;
-use GDO\DOMPDF\GDT_PDF;
+
 use GDO\Core\GDT;
-/** @var $field GDT_PDF **/
+use GDO\DOMPDF\GDT_PDF;
+
+/** @var $field GDT_PDF * */
 ?>
 <!DOCTYPE html>
 <html>
- <head>
-  <title><?=$field->renderTitle()?></title>
- </head>
- <body>
-  <?=$field->renderMode(GDT::RENDER_PDF)?>
-  <h6>Powered by Fineprint</h6>
-  <footer>
-<script type="text/php">
+<head>
+    <title><?=$field->renderTitle()?></title>
+</head>
+<body>
+<?=$field->renderMode(GDT::RENDER_PDF)?>
+<h6>Powered by Fineprint</h6>
+<footer>
+    <script type="text/php">
 if (isset($pdf)) {
 $text2 = "Page 100 / 200";
 $text = "Page {PAGE_NUM} / {PAGE_COUNT}";
@@ -26,7 +28,14 @@ $y = $pdf->get_height() - 17;
 $pdf->page_text($x, $y, $text, $font, $size);
 $pdf->page_text(20, $y, "Printed on " . $date, $font, $size);
 }
-</script>
-    </footer>
- </body>
+
+
+
+
+
+
+
+    </script>
+</footer>
+</body>
 </html>

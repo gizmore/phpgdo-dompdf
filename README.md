@@ -8,7 +8,6 @@ The first or second module using composer, which is discouraged.
 [Install](https://github.com/gizmore/phpgdo/blob/main/DOCS/GDO7_INSTALLATION.md) like any GDOv7 module.
 Do not forget to run post install hooks.
 
-
 ## Usage
 
 This module allows to renderHTML() or renderTemplate().
